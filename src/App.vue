@@ -1,0 +1,102 @@
+<template>
+  <div id="app">
+  <el-row>
+    <el-col :span="4"><nav class="user-title">MeetMax</nav></el-col>
+   <el-col :span="20"><nav class="top-nav"></nav></el-col>
+   </el-row>
+  <el-row class="side-wrap">
+  <el-col :span="4"  class="side-bar">
+    <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" theme="dark">
+      <el-submenu index="1">
+        <template slot="title"><i class="el-icon-document"></i>文章管理</template>
+        <router-link to="/release">
+          <el-menu-item index="1-1">
+          发布文章
+          </el-menu-item>
+          </router-link>
+          <router-link to="/article-list">
+          <el-menu-item index="1-2">文章列表</el-menu-item>
+           </router-link>
+        </el-submenu>
+      </el-submenu>
+      <el-menu-item index="2"><i class="el-icon-menu"></i>评论管理</el-menu-item>
+      <el-menu-item index="3"><i class="el-icon-setting"></i>用户管理</el-menu-item>
+    </el-menu>
+  </el-col>
+ <el-col :span="20">
+  <router-view></router-view>
+ </el-col>
+ </el-row>
+  </div>
+</template>
+<script>
+export default {
+  name: 'app',
+  components: {
+   
+  },
+  methods: {
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    }
+  }
+}
+</script>
+
+<style>
+@import './assets/css/base.css';
+#app{
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  height: 100%;
+}
+.el-menu-vertical-demo{
+  height: 100%;
+}
+.top-nav{
+  height: 50px;
+  background-color: #3c8dbc;
+}
+.user-title{
+  background-color: #367fa9;
+  height: 50px;
+  color: #fff;
+  line-height: 50px;
+  text-align: center;
+  font-size: 20px
+}
+ .el-row {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .el-col {
+    border-radius: 4px;
+  }
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+  .bg-purple {
+    background: #d3dce6;
+  }
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
+  .row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
+  }
+  .side-wrap{
+    height: calc(100% - 50px);
+  }
+  .side-bar{
+    height: 100%;
+  }
+
+</style>
