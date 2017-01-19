@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Index from '../view/index';
 import Release from '../view/release-article';
 import ArticleList from '../view/article-list';
+import ArticleUpdate from '../view/article-update';
 Vue.use(VueRouter);
 const router=new VueRouter({
   mode:'history',
@@ -21,6 +22,11 @@ const router=new VueRouter({
 		name:'article-list',
 		path:'/article-list',
 		component:ArticleList
+    },
+    {
+      name:'article-update',
+      path:'/update',
+      component:ArticleUpdate
     }
   ]
 });

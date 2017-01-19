@@ -20,12 +20,12 @@
     </el-col>
   </div>
 </template>
-<script lang="babel">
+<script>
   import { markdownEditor } from 'vue-simplemde'
-  import 'FontAwesome-webpack';
   import 'simplemde-theme-base';
+  import 'FontAwesome-webpack';
   export default{
-    name:'release-article',
+    name:'release-update',
     data() {
       return {
         content: 'hello world',

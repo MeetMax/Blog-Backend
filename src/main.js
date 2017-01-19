@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
-import router from './router/index'
+import router from './router/index';
 Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({
