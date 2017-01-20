@@ -15,7 +15,7 @@ const router=new VueRouter({
     },
     {
       	name:'release-article',
-      	path:'/release',
+      	path:'/release-article',
       	component:Release
     },
     {
@@ -25,7 +25,7 @@ const router=new VueRouter({
     },
     {
       name:'article-update',
-      path:'/update',
+      path:'/article-update',
       component:ArticleUpdate
     }
   ]

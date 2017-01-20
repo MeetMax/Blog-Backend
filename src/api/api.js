@@ -1,13 +1,7 @@
 import axios from 'axios';
+import qs from 'qs';
 const HOST='http://api.com';
-//get请求获取数据
-export function getAll(url) {
-  return axios({
-    method: 'get',
-    url: url,
-    baseURL: HOST,
-  });
-}
+
 //post请求提交数据
 export function create(url,data,token) {
   return new Promise((resolve,result)=>{
@@ -15,16 +9,16 @@ export function create(url,data,token) {
         method: 'post',
         url: HOST+url,
         headers:{
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'token':'hahah',
+          'Content-Type': 'application/json; charset=UTF-8',
+           'token':token
         },
-        data: data
+        data:data
       }).then(function (response) {
         resolve(response.data)
       })
   })
 }
-
+//获取列表
 export function getList(url) {
   return new Promise((resolve,result)=>{
       axios.get(HOST+url)
@@ -32,7 +26,20 @@ export function getList(url) {
           resolve(response.data)
         })
   })
-
-
+}
+//根据id删除
+export function deleteById(url,token) {
+  return new Promise((resolve,result)=>{
+    axios({
+      method: 'delete',
+      url: HOST+url,
+      headers:{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'token':token
+      },
+    }).then(function (response) {
+      resolve(response.data)
+    })
+  })
 }
 
