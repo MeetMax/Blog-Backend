@@ -42,4 +42,20 @@ export function deleteById(url,token) {
     })
   })
 }
+//根据id修改文章
+export function updateById(url,data,token) {
+  return new Promise((resolve,result)=>{
+    axios({
+      method: 'put',
+      url: HOST+url,
+      headers:{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'token':token
+      },
+      data:data
+    }).then(function (response) {
+      resolve(response.data)
+    })
+  })
+}
 

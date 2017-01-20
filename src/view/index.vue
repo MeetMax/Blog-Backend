@@ -3,7 +3,7 @@
 		{{name}}
 	</div>
 </template>
-<script>
+<script lang="babel">
 	export default{
 		name:'index',
 		data(){
@@ -19,3 +19,6 @@
 		}
 	}
 </script>
+<style scoped>
+	
+</style>

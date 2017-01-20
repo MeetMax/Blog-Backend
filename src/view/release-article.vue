@@ -21,7 +21,7 @@
   </div>
 </template>
 <script lang="babel">
-  const token='SC19qI-ErLxjPV-CLTMaKfR6ehUIMTFC_1484820262';
+  const token='ye4K90UYaXSYRjINv1XVtavOwvxPWXra_1484843593';
   import { markdownEditor } from 'vue-simplemde'
   import {getList,create} from '../api/api';
   import 'FontAwesome-webpack';
@@ -75,6 +75,16 @@
       },
       submitForm(){
         create('/article',this.formData,token)
+        .then((data)=>{
+          if(data){
+             this.$message({
+              message: '恭喜你，文章发布成功！^_^',
+              type: 'success'
+            })
+          }else{
+            this.$message.error('对不起，文章发布失败了 T^T！');
+          }
+         })
       },
       changeCat(cat_id){
         this.cat_id=cat_id;

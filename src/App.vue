@@ -15,23 +15,16 @@
             <router-link to="/article-list">
               <el-menu-item index="1-2">文章列表</el-menu-item>
             </router-link>
-            <router-link to="/article-update">
-              <el-menu-item index="1-3">文章修改</el-menu-item>
-            </router-link>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title"><i class="el-icon-document"></i>分类管理</template>
-            <router-link to="/release">
+            <router-link to="/add-category">
               <el-menu-item index="2-1">添加分类</el-menu-item>
             </router-link>
-            <router-link to="/article-list">
+            <router-link to="/category-list">
               <el-menu-item index="2-2">分类列表</el-menu-item>
             </router-link>
-            <router-link to="/update">
-              <el-menu-item index="2-3">分类修改</el-menu-item>
-            </router-link>
           </el-submenu>
-
           <el-menu-item index="3"><i class="el-icon-menu"></i>评论管理</el-menu-item>
           <el-menu-item index="4"><i class="el-icon-setting"></i>用户管理</el-menu-item>
         </el-menu>
