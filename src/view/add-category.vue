@@ -11,13 +11,17 @@
 </div>
 </template>
 <script lang="babel">
-const token='1ecdHcuwHzVw0V8NIxQgCXIWZZqWFqlI_1484930794';
  import {create} from '../api/api';
 export default{
 	name:'add-category',
 	data(){
 		return{
 			input:''
+		}
+	},
+	computed:{
+		token(){
+			return localStorage.getItem('token');
 		}
 	},
 	mounted(){
@@ -29,7 +33,7 @@ export default{
 	methods:{
 		submitCat(){
 			let data={name:this.input}
-			create('/category',data,token).then((data)=>{
+			create('/category',data,this.token).then((data)=>{
 	          if(data){
 	             this.$message({
 	              message: '恭喜你，分类添加成功！ ^_^',

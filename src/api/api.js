@@ -58,4 +58,34 @@ export function updateById(url,data,token) {
     })
   })
 }
+//管理员登录
+export function login(url,data) {
+  return new Promise((resolve,result)=>{
+    axios({
+      method: 'post',
+      url: HOST+url,
+      headers:{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      data:data
+    }).then(function (response) {
+      resolve(response.data)
+    })
+  })
+}
+//判断是否登录
+export function isLogin(url,data) {
+  return new Promise((resolve,result)=>{
+    axios({
+      method: 'post',
+      url: HOST+url,
+      headers:{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      data:data
+    }).then(function (response) {
+      resolve(response.data)
+    })
+  })
+}
 

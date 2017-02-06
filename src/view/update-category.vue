@@ -11,7 +11,6 @@
 </div>
 </template>
 <script lang="babel">
-const token='1ecdHcuwHzVw0V8NIxQgCXIWZZqWFqlI_1484930794';
  import {updateById,getList} from '../api/api';
 export default{
 	name:'update-category',
@@ -24,6 +23,11 @@ export default{
 		updateById,
 		getList
 	},
+	computed:{
+		token(){
+			return localStorage.getItem('token');
+		}
+	},
 	mounted(){
 		getList(`/category/${this.$route.params.id}`).then((data)=>{
 			this.input=data.name;
@@ -32,7 +36,7 @@ export default{
 	methods:{
 		submitCat(){
 			let data={name:this.input}
-			updateById(`/category/${this.$route.params.id}`,data,token).then((data)=>{
+			updateById(`/category/${this.$route.params.id}`,data,this.token).then((data)=>{
 	          if(data){
 	             this.$message({
 	              message: '恭喜你，分类修改成功！ ^_^',

@@ -20,7 +20,6 @@
   </div>
 </template>
 <script lang="babel">
-  const token='ye4K90UYaXSYRjINv1XVtavOwvxPWXra_1484843593';
   import { markdownEditor } from 'vue-simplemde'
   import {getList,create,updateById} from '../api/api';
   import 'FontAwesome-webpack';
@@ -61,6 +60,9 @@
     computed: {
       simplemde() {
         return this.$refs.markdownEditor.simplemde
+      },
+       token(){
+        return localStorage.getItem('token');
       }
     },
     mounted(){
@@ -75,6 +77,11 @@
           this.selected=data.cat_id;
       });
     },
+    watch:{
+      '$route' (to, from) {
+        console.log(1)
+      }
+    },
     methods: {
       handleInput(){
         this.html=this.simplemde.markdown(this.content);
@@ -86,7 +93,7 @@
         }
       },
       submitForm(){
-        updateById(`/article/${this.$route.params.id}`,this.formData,token)
+        updateById(`/article/${this.$route.params.id}`,this.formData,this.token)
         .then((data)=>{
           if(data){
              this.$message({

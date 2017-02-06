@@ -6,7 +6,7 @@
 	    highlight-current-row
 	    @current-change="handleCurrentChange"
 	    style="width: 100%">
-	    <el-table-column type="index" width="50"></el-table-column>
+	    <el-table-column type="index" width="100"></el-table-column>
 	    <el-table-column label="分类名称"  property="name" ></el-table-column>
 	     <el-table-column label="操作" width="180">
 		      <template scope="scope">
@@ -24,7 +24,6 @@
 </div>
 </template>
 <script lang="babel">
-const token='1ecdHcuwHzVw0V8NIxQgCXIWZZqWFqlI_1484930794';
  import {getList,deleteById} from '../api/api';
 	export default{
 		name:'category-list',
@@ -43,9 +42,14 @@ const token='1ecdHcuwHzVw0V8NIxQgCXIWZZqWFqlI_1484930794';
 				this.category=data;
 			})
 		},
+		computed:{
+			token(){
+				return localStorage.getItem('token');
+			}
+		},
 		methods:{
 		      handleDelete(index, row) {
-		        deleteById(`/category/${row.id}`,token).then((data)=>{
+		        deleteById(`/category/${row.id}`,this.token).then((data)=>{
 		        	getList('/category').then((data)=>{
 						this.category=data;
 					})

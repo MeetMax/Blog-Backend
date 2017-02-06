@@ -21,7 +21,6 @@
   </div>
 </template>
 <script lang="babel">
-  const token='1ecdHcuwHzVw0V8NIxQgCXIWZZqWFqlI_1484930794';
   import {getAll,getList,create,deleteById} from '../api/api';
   export default{
     name:'article-list',
@@ -35,6 +34,11 @@
       getList,
       create,
       deleteById
+    },
+    computed:{
+      token(){
+        return localStorage.getItem('token');
+      }
     },
     mounted(){
       getList('/article').then(data=>{
@@ -55,7 +59,7 @@
         getList('/category').then(function (data) {
           console.log(data)
         });
-        create('/category',token,this.category);
+        create('/category',this.token,this.category);
       },
       handleSelectionChange(){
       },
@@ -63,7 +67,7 @@
         this.$router.push({name: 'article-update', params: { id: row.id }})
       },
       handleDelete(row) {
-        deleteById(`/article/${row.id}`,token).then((data)=>{
+        deleteById(`/article/${row.id}`,this.token).then((data)=>{
           getList('/article').then(data=>{
             this.articleData=data;
           })

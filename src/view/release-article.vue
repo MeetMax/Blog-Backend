@@ -55,6 +55,9 @@
     computed: {
       simplemde() {
         return this.$refs.markdownEditor.simplemde
+      },
+      token(){
+        return localStorage.getItem('token');
       }
     },
     mounted(){
@@ -74,7 +77,7 @@
         console.log(this.catModel);
       },
       submitForm(){
-        create('/article',this.formData,token)
+        create('/article',this.formData,this.token)
         .then((data)=>{
           if(data){
              this.$message({

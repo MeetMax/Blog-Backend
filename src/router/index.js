@@ -7,6 +7,7 @@ import ArticleUpdate from '../view/article-update';
 import AddCategory from '../view/add-category';
 import CategoryList from '../view/category-list';
 import UpdateCategory from '../view/update-category';
+import Login from '../view/login';
 
 Vue.use(VueRouter);
 const router=new VueRouter({
@@ -17,15 +18,20 @@ const router=new VueRouter({
       	path:'/',
       	component:Index
     },
+     {
+        name:'login',
+        path:'/login',
+        component:Login
+    },
     {
       	name:'release-article',
       	path:'/release-article',
       	component:Release
     },
     {
-		name:'article-list',
-		path:'/article-list',
-		component:ArticleList
+  		name:'article-list',
+  		path:'/article-list',
+  		component:ArticleList
     },
     {
       name:'article-update',

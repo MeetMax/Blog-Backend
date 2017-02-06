@@ -1,8 +1,17 @@
 <template>
   <div id="app">
     <el-row>
-      <el-col :span="4"><nav class="user-title">MeetMax</nav></el-col>
-      <el-col :span="20"><nav class="top-nav"></nav></el-col>
+      <el-col :span="4">
+      <nav class="user-title">
+        <div v-if="login">MeetMax</div>
+        <div v-else>未 登 录</div>
+      </nav>
+      </el-col>
+      <el-col :span="20"><nav class="top-nav">
+      <span v-if="login" @click="logout">退出</span>
+      <span v-else><router-link to="/login">登录</router-link></span>
+      </nav>
+      </el-col>
     </el-row>
     <el-row class="side-wrap">
       <el-col :span="4"  class="side-bar">
@@ -26,20 +35,52 @@
             </router-link>
           </el-submenu>
           <el-menu-item index="3"><i class="el-icon-menu"></i>评论管理</el-menu-item>
-          <el-menu-item index="4"><i class="el-icon-setting"></i>用户管理</el-menu-item>
+          <router-link to="/login">
+            <el-menu-item index="4"><i class="el-icon-setting"></i>用户登录</el-menu-item>
+          </router-link>
         </el-menu>
       </el-col>
       <el-col :span="20">
-        <router-view></router-view>
+        <router-view ></router-view>
       </el-col>
     </el-row>
   </div>
 </template>
 <script>
+  import {isLogin} from './api/api';
   export default {
     name: 'app',
+    data(){
+      return{
+        formData:{},
+        state:'',
+        dialogTableVisible: false,
+        dialogFormVisible: false,
+        form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        },
+      }
+    },
     components: {
-
+      isLogin
+    },
+    computed:{
+      login(){
+        this.formData={
+          token:localStorage.getItem('token')
+        };
+        isLogin('/user/verify-token',this.formData).then(data=>{
+          this.state=data;
+        })
+        return this.state;  
+      }
     },
     methods: {
       handleOpen(key, keyPath) {
@@ -47,6 +88,16 @@
       },
       handleClose(key, keyPath) {
 
+      },
+      logout(){
+        this.state=false;
+        localStorage.removeItem('token');
+        if(!localStorage.getItem('token')){
+             this.$message({
+                message: '退出成功！',
+                type: 'success'
+            })
+        }
       }
     }
   }
@@ -104,6 +155,16 @@
   }
   .side-bar{
     height: 100%;
+  }
+  .top-nav span{
+    color: #fff;
+    line-height: 50px;
+    float: right;
+    margin-right: 30px;
+    cursor: pointer;
+  }
+  .top-nav span a{
+    color: #fff;
   }
 
 </style>
