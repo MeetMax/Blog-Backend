@@ -68,19 +68,16 @@
     mounted(){
       getList(`/category`).then(data=>{
         this.category=data;
-      });
-      getList(`/article/${this.$route.params.id}`).then(data=>{
+        getList(`/article/${this.$route.params.id}`).then(data=>{
           this.title=data.title;
           this.content=data.content;
           this.html=data.html;
           this.cat_id=data.cat_id;
           this.selected=data.cat_id;
+          console.log(data.cat_id)
       });
-    },
-    watch:{
-      '$route' (to, from) {
-        console.log(1)
-      }
+      });
+     
     },
     methods: {
       handleInput(){
@@ -93,6 +90,12 @@
         }
       },
       submitForm(){
+          this.formData={
+            title:this.title,
+            content:this.content,
+            html:this.html,
+            cat_id:this.cat_id
+        }
         updateById(`/article/${this.$route.params.id}`,this.formData,this.token)
         .then((data)=>{
           if(data){
