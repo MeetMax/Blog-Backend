@@ -1,13 +1,13 @@
 import axios from 'axios';
 import qs from 'qs';
 const HOST='http://api.com';
-
+const port=':8080';
 //post请求提交数据
 export function create(url,data,token) {
   return new Promise((resolve,result)=>{
       axios({
         method: 'post',
-        url: HOST+url,
+        url: HOST+port+url,
         headers:{
           'Content-Type': 'application/json; charset=UTF-8',
            'token':token
@@ -21,7 +21,7 @@ export function create(url,data,token) {
 //获取列表
 export function getList(url) {
   return new Promise((resolve,result)=>{
-      axios.get(HOST+url)
+      axios.get(HOST+port+url)
         .then(function (response) {
           resolve(response.data)
         })
@@ -32,7 +32,7 @@ export function deleteById(url,token) {
   return new Promise((resolve,result)=>{
     axios({
       method: 'delete',
-      url: HOST+url,
+      url: HOST+port+url,
       headers:{
         'Content-Type': 'application/json; charset=UTF-8',
         'token':token
@@ -47,7 +47,7 @@ export function updateById(url,data,token) {
   return new Promise((resolve,result)=>{
     axios({
       method: 'put',
-      url: HOST+url,
+      url: HOST+port+url,
       headers:{
         'Content-Type': 'application/json; charset=UTF-8',
         'token':token
@@ -63,7 +63,7 @@ export function login(url,data) {
   return new Promise((resolve,result)=>{
     axios({
       method: 'post',
-      url: HOST+url,
+      url: HOST+port+url,
       headers:{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -78,7 +78,7 @@ export function isLogin(url,data) {
   return new Promise((resolve,result)=>{
     axios({
       method: 'post',
-      url: HOST+url,
+      url: HOST+port+url,
       headers:{
         'Content-Type': 'application/json; charset=UTF-8',
       },
